@@ -19,12 +19,4 @@ public class BootStrapData implements CommandLineRunner {
         //productLineRepository.findAll().forEach(System.out::println);
         System.out.println(productLineRepository.findById("Ships"));
     }
-
-    public CustomerRepository getCustomerRepository() {
-        return customerRepository;
-    }
-
-    public ProductLineRepository getProductLineRepository() {
-        return productLineRepository;
-    }
 }

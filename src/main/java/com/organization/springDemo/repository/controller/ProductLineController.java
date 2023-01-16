@@ -10,15 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping(path="/productlinemapping")
 public class ProductLineController {
-    BootStrapData bootStrapData = new BootStrapData();
     @GetMapping(path = "/productline")
     public @ResponseBody String getProductLine() throws Exception {
-        CommandLineRunner commandLineRunner = new CommandLineRunner() {
-            @Override
-            public void run(String... args) throws Exception {
-                bootStrapData.getProductLineRepository().findAll().forEach(System.out::println);
-            }
-        };
+
         return "EERRROR";
     }
 }
