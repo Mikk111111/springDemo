@@ -20,4 +20,8 @@ public class ProductLine {
     private String textDescription;
     @Column(name="htmldescription")
     private String htmlDescription;
+
+    public String getProductLine() {
+        return productLine;
+    }
 }
