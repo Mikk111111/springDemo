@@ -1,9 +1,7 @@
 package com.organization.springDemo.repository.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import jakarta.transaction.TransactionScoped;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,10 +16,7 @@ public class ProductLine {
     private String productLine;
     @Column(name="textdescription")
     private String textDescription;
+    @Transient
     @Column(name="htmldescription")
     private String htmlDescription;
-
-    public String getProductLine() {
-        return productLine;
-    }
 }
