@@ -1,7 +1,6 @@
 package com.organization.springDemo.repository.model;
 
 import jakarta.persistence.*;
-import jakarta.transaction.TransactionScoped;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
