@@ -9,23 +9,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
-@RequestMapping(path = "/customertemplate")
+@RequestMapping(path = "/cTemplate")
 public class CustomerTemplateController {
     @Autowired
     private CustomerService customerService;
-    //http://localhost:8080/customertemplate/test
-    @GetMapping(path="/test")
-    public String get(){
-        return "test/test_page";
-    }
-    //http://localhost:8080/customertemplate/firspage/customer/112
-    @GetMapping(path="/firspage/customer/{id}")
-    public String getFirstPage(Model model, @PathVariable int id){
+
+    //http://localhost:8080/cTemplate/firstpage/112
+    @GetMapping(path = "/firstpage/{id}")
+    public String getFirstPage(Model model, @PathVariable int id) {
         Customer customer = customerService.getMyCustomerByID(id);
-        model.addAttribute("company_name",customer.getContactFirstName());
-        model.addAttribute("contact_first_name",customer.getContactLastName());
-        model.addAttribute("country",customer.getCountry());
-        return "test/firstpage";
+        model.addAttribute("company_name", customer.getContactFirstName());
+        model.addAttribute("contact_first_name", customer.getContactFirstName());
+        model.addAttribute("contact_last_name", customer.getContactLastName());
+        model.addAttribute("country", customer.getCountry());
+        return "/test/firstpage_customer";
+    }
+
+    //http://localhost:8080/cTemplate/firstpage/customer/all
+    @GetMapping(path = "/firstpage/customer/all")
+    public String getAllCustomers(Model model) {
+        List<Customer> customersList = customerService.getAllCustomers();
+        model.addAttribute("key_customers_list",customersList);
+        return "/test/firstpage_customers_list";
     }
 }
