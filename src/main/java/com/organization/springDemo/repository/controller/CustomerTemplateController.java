@@ -30,9 +30,23 @@ public class CustomerTemplateController {
 
     //http://localhost:8080/cTemplate/firstpage/customer/all
     @GetMapping(path = "/firstpage/customer/all")
-    public String getAllCustomers(Model model) {
+    public String getFirstAllCustomers(Model model) {
         List<Customer> customersList = customerService.getAllCustomers();
         model.addAttribute("key_customers_list",customersList);
         return "/test/firstpage_customers_list";
     }
+    //http://localhost:8080/cTemplate/customer/112
+    @GetMapping(path = "/customer/{id}")
+    public String getCustomer(Model model, @PathVariable int id){
+        Customer customer = customerService.getMyCustomerByID(id);
+        model.addAttribute("key_customer", customer);
+        return "/customer/customer_th";
+    }
+    @GetMapping(path = "/firstpage/customer/all")
+    public String getAllCustomers(Model model) {
+        List<Customer> customersList = customerService.getAllCustomers();
+        model.addAttribute("key_customers_list",customersList);
+        return "/customers/customers_th";
+    }
+
 }

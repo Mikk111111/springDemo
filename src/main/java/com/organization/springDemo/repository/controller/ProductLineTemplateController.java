@@ -1,6 +1,5 @@
 package com.organization.springDemo.repository.controller;
 
-import com.organization.springDemo.repository.model.Customer;
 import com.organization.springDemo.repository.model.ProductLine;
 import org.springframework.ui.Model;
 import com.organization.springDemo.repository.service.ProductLineService;
