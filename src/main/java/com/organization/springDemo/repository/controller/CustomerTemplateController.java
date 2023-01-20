@@ -5,10 +5,11 @@ import com.organization.springDemo.repository.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -42,11 +43,31 @@ public class CustomerTemplateController {
         model.addAttribute("key_customer", customer);
         return "/customer/customer_th";
     }
-    @GetMapping(path = "/firstpage/customer/all")
+    //http://localhost:8080/cTemplate/main/customertable/all
+
+    @GetMapping(path = "/main/customertable/all")
     public String getAllCustomers(Model model) {
         List<Customer> customersList = customerService.getAllCustomers();
-        model.addAttribute("key_customers_list",customersList);
+        model.addAttribute("listas",customersList);
         return "/customers/customers_th";
     }
-
+    //================================================================================================================
+    //http://localhost:8080/cTemplate/main//jquerypage
+    @GetMapping(path = "/main/jquerypage")
+    public String getJqueryPage(){
+        return "/test/jquerypage";
+    }
+    //cTemplate/main/jquerypage/search
+    @RequestMapping(value = "/main/jquerypage/search",method = RequestMethod.GET)
+    public String getJqueryPageSearch(Model model){
+        model.addAttribute("key_customer",new Customer());
+        model.addAttribute("key_customer_listas", Collections.emptyList());
+        return "/customer/post_get_customers_th";
+    }
+    @RequestMapping(value = "/main/jquerypage/search",method = RequestMethod.POST)
+    public String postJqueryPageSearch(Model model, @ModelAttribute Customer customer){
+        model.addAttribute("key_customer",new Customer());
+        model.addAttribute("key_customer_listas",Collections.emptyList());
+        return "/customer/post_get_customers_th";
+    }
 }
